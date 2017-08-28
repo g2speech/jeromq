@@ -105,8 +105,8 @@ public class Router extends SocketBase
         prefetchedId = new Msg();
         prefetchedMsg = new Msg();
 
-        anonymousPipes = new HashSet<>();
-        outpipes = new HashMap<>();
+        anonymousPipes = new HashSet<Pipe>();
+        outpipes = new HashMap<Blob, Outpipe>();
     }
 
     @Override

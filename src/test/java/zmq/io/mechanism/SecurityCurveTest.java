@@ -111,7 +111,8 @@ public class SecurityCurveTest
         byte[] clientPublicKey = clientKeyPair[0];
         byte[] clientSecretKey = clientKeyPair[1];
 
-        try (ZContext context = new ZContext()) {
+        ZContext context = new ZContext();
+        try {
             org.zeromq.ZMQ.Socket serverSocket = context.createSocket(ZMQ.ZMQ_DEALER);
             serverSocket.setCurveSecretKey(serverSecretKey);
             serverSocket.setAsServerCurve(true);
@@ -129,6 +130,9 @@ public class SecurityCurveTest
 
             byte[] recv = serverSocket.recv();
             assertThat(recv, is(equalTo(testBytes)));
+        }
+        finally {
+            context.close();
         }
     }
 

@@ -33,8 +33,8 @@ public final class MultiMap<K extends Comparable<? super K>, V>
 
     public MultiMap()
     {
-        data = new HashMap<>();
-        inverse = new HashMap<>();
+        data = new HashMap<K, List<V>>();
+        inverse = new HashMap<V, K>();
     }
 
     public void clear()
@@ -45,7 +45,7 @@ public final class MultiMap<K extends Comparable<? super K>, V>
 
     public Collection<Entry<V, K>> entries()
     {
-        ArrayList<Entry<V, K>> list = new ArrayList<>(inverse.entrySet());
+        ArrayList<Entry<V, K>> list = new ArrayList<Entry<V, K>>(inverse.entrySet());
         Collections.sort(list, comparator);
         return list;
     }

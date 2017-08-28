@@ -53,7 +53,7 @@ public abstract class Own extends ZObject
 
         options = new Options();
         errno = options.errno;
-        owned = new HashSet<>();
+        owned = new HashSet<Own>();
     }
 
     //  The object is living within I/O thread.
@@ -68,7 +68,7 @@ public abstract class Own extends ZObject
         termAcks = 0;
         errno = options.errno;
 
-        owned = new HashSet<>();
+        owned = new HashSet<Own>();
     }
 
     protected abstract void destroy();

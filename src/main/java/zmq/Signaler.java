@@ -135,7 +135,12 @@ final class Signaler implements Closeable
                 rc = selector.select(timeout);
             }
         }
-        catch (ClosedSelectorException | IOException e) {
+        catch (ClosedSelectorException e) {
+            e.printStackTrace();
+            errno.set(ZError.EINTR);
+            return false;
+        }
+        catch (IOException e) {
             e.printStackTrace();
             errno.set(ZError.EINTR);
             return false;

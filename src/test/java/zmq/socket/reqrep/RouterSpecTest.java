@@ -73,7 +73,7 @@ public class RouterSpecTest extends AbstractSpecTest
         assertThat(rc, is(true));
 
         int services = 5;
-        List<SocketBase> senders = new ArrayList<>();
+        List<SocketBase> senders = new ArrayList<SocketBase>();
         for (int peer = 0; peer < services; ++peer) {
             SocketBase sender = ZMQ.socket(ctx, connectType);
             assertThat(sender, notNullValue());
@@ -98,7 +98,7 @@ public class RouterSpecTest extends AbstractSpecTest
         assertThat(rc, is(true));
         recvSeq(receiver, "A0", "M");
 
-        Set<String> sum = new HashSet<>();
+        Set<String> sum = new HashSet<String>();
 
         // send N requests
         for (int peer = 0; peer < services; ++peer) {

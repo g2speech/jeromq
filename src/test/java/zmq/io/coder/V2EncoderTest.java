@@ -42,7 +42,7 @@ public class V2EncoderTest
         Msg msg = readShortMessage();
         encoder.loadMsg(msg);
 
-        ValueReference<ByteBuffer> ref = new ValueReference<>();
+        ValueReference<ByteBuffer> ref = new ValueReference<ByteBuffer>();
         int outsize = encoder.encode(ref, 0);
         ByteBuffer out = ref.get();
 
@@ -55,7 +55,7 @@ public class V2EncoderTest
     public void testReaderLong()
     {
         Msg msg = readLongMessage1();
-        ValueReference<ByteBuffer> ref = new ValueReference<>();
+        ValueReference<ByteBuffer> ref = new ValueReference<ByteBuffer>();
         int outsize = encoder.encode(ref, 0);
         assertThat(outsize, is(0));
         ByteBuffer out = ref.get();

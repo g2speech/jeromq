@@ -1,6 +1,6 @@
 package zmq.io;
 
-import java.util.Objects;
+import zmq.util.Objects;
 import java.util.Properties;
 
 public class Metadata

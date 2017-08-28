@@ -193,7 +193,14 @@ public class TcpConnecter extends Own implements IPollEvents
                 socket.eventConnectDelayed(addr.toString(), -1);
             }
         }
-        catch (RuntimeException | IOException e) {
+        catch (RuntimeException e) {
+            //  Handle any other error condition by eventual reconnect.
+            if (fd != null) {
+                close();
+            }
+            addReconnectTimer();
+        }
+        catch (IOException e) {
             //  Handle any other error condition by eventual reconnect.
             if (fd != null) {
                 close();

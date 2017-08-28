@@ -1,7 +1,5 @@
 package zmq.util;
 
-import java.util.Objects;
-
 public class ValueReference<V>
 {
     private V value;

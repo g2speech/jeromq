@@ -33,9 +33,9 @@ public class ReqRepTest
         public void run()
         {
             int currentServCount = 0;
-            try (
-                 ZMQ.Context context = ZMQ.context(1);
-                 ZMQ.Socket responder = context.socket(ZMQ.REP);) {
+            ZMQ.Context context = ZMQ.context(1);
+            ZMQ.Socket responder = context.socket(ZMQ.REP);
+            try {
                 responder.bind(address);
                 int count = loopCount * threadCount;
                 while (count-- > 0) {
@@ -58,6 +58,12 @@ public class ReqRepTest
 
                 }
             }
+            finally {
+                if (responder != null) {
+                    responder.close();
+                }
+                context.close();
+            }
         }
     }
 
@@ -77,9 +83,9 @@ public class ReqRepTest
         @Override
         public void run()
         {
-            try (
-                 ZMQ.Context context = ZMQ.context(10);
-                 ZMQ.Socket socket = context.socket(ZMQ.REQ);) {
+            ZMQ.Context context = ZMQ.context(10);
+            ZMQ.Socket socket = context.socket(ZMQ.REQ);
+            try {
                 socket.connect(address);
                 for (int idx = 0; idx < loopCount; idx++) {
                     long tid = Thread.currentThread().getId();
@@ -96,6 +102,10 @@ public class ReqRepTest
                         System.out.println(tid + " client received [" + s + "]");
                     }
                 }
+            }
+            finally {
+                socket.close();
+                context.close();
             }
         }
     }
@@ -173,8 +183,8 @@ public class ReqRepTest
         // wait till server socket is bound
         latch.await(1, TimeUnit.SECONDS);
         final long start = System.currentTimeMillis();
-        try (
-             final ZMQ.Socket req = context.socket(ZMQ.REQ);) {
+        final ZMQ.Socket req = context.socket(ZMQ.REQ);
+        try {
             req.connect(addr);
             request.send(req);
             final ZMsg response = ZMsg.recvMsg(req);
@@ -182,6 +192,8 @@ public class ReqRepTest
             assertThat(Arrays.equals(response.getLast().getData(), payloadBytes), is(true));
         }
         finally {
+            req.close();
+
             long end = System.currentTimeMillis();
             System.out.println("Large Message received in  " + (end - start) + " millis.");
             context.close();

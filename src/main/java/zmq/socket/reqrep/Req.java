@@ -25,7 +25,7 @@ public class Req extends Dealer
     private boolean messageBegins;
 
     //  The pipe the request was sent to and where the reply is expected.
-    private final ValueReference<Pipe> replyPipe = new ValueReference<>();
+    private final ValueReference<Pipe> replyPipe = new ValueReference<Pipe>();
 
     //  Whether request id frames shall be sent and expected.
     private boolean requestIdFramesEnabled;

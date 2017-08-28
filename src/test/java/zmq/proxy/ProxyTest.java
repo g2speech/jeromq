@@ -304,7 +304,7 @@ public class ProxyTest
         String host = "tcp://127.0.0.1:" + Utils.findOpenPort();
         int count = 5;
         ExecutorService executor = Executors.newFixedThreadPool(count + 1);
-        List<Client> clients = new ArrayList<>();
+        List<Client> clients = new ArrayList<Client>();
         for (int idx = 0; idx < count; ++idx) {
             Client client = new Client(host, controlEndpoint, false);
             clients.add(client);

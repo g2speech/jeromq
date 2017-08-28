@@ -91,7 +91,7 @@ public class DealerDealerTest
         final int messagesCount = 1000;
 
         final ZMQ.Context context = ZMQ.context(1);
-        final Deque<String> queue = new LinkedBlockingDeque<>();
+        final Deque<String> queue = new LinkedBlockingDeque<String>();
         final String host = "tcp://localhost:" + Utils.findOpenPort();
 
         final Runnable server = new Runnable()

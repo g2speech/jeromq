@@ -1,5 +1,6 @@
 package org.zeromq;
 
+import java.io.Closeable;
 import java.nio.charset.Charset;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -18,7 +19,7 @@ import zmq.ZMQ;
  * itself. Further, messages may be queued in the event that a peer is unavailable to receive them.
  * </p>
  */
-public class ZSocket implements AutoCloseable
+public class ZSocket implements Closeable
 {
     public static final Charset UTF8 = Charset.forName("UTF-8");
     private final SocketBase    socketBase;
@@ -43,7 +44,7 @@ public class ZSocket implements AutoCloseable
      */
     public int getType()
     {
-        return (int) getOption(ZMQ.ZMQ_TYPE);
+        return (Integer) getOption(ZMQ.ZMQ_TYPE);
     }
 
     /**
@@ -121,7 +122,7 @@ public class ZSocket implements AutoCloseable
      */
     public final boolean hasReceiveMore()
     {
-        return (int) getOption(ZMQ.ZMQ_RCVMORE) == 1;
+        return (Integer) getOption(ZMQ.ZMQ_RCVMORE) == 1;
     }
 
     public void subscribe(byte[] topic)

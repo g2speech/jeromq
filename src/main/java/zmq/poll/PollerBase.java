@@ -1,7 +1,7 @@
 package zmq.poll;
 
 import java.util.Map.Entry;
-import java.util.Objects;
+import zmq.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import zmq.util.Clock;
@@ -60,7 +60,7 @@ abstract class PollerBase implements Runnable
         worker.setDaemon(true);
 
         load = new AtomicInteger(0);
-        timers = new MultiMap<>();
+        timers = new MultiMap<Long, TimerInfo>();
     }
 
     //  Returns load of the poller. Note that this function can be

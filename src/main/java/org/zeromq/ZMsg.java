@@ -45,7 +45,7 @@ public class ZMsg implements Iterable<ZFrame>, Deque<ZFrame>
     /**
      * Hold internal list of ZFrame objects
      */
-    private final ArrayDeque<ZFrame> frames = new ArrayDeque<>();
+    private final ArrayDeque<ZFrame> frames = new ArrayDeque<ZFrame>();
 
     /**
      * Class Constructor

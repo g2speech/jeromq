@@ -105,7 +105,7 @@ public class RepSpecTest extends AbstractSpecTest
         assertThat(rc, is(true));
 
         int services = 5;
-        List<SocketBase> reqs = new ArrayList<>();
+        List<SocketBase> reqs = new ArrayList<SocketBase>();
         for (int peer = 0; peer < services; ++peer) {
             SocketBase sender = ZMQ.socket(ctx, connectType);
             assertThat(sender, notNullValue());
@@ -141,7 +141,7 @@ public class RepSpecTest extends AbstractSpecTest
                 sendSeq(reqs.get(peer), "B" + peer);
             }
 
-            Set<String> replies = new HashSet<>();
+            Set<String> replies = new HashSet<String>();
             // handle N requests
             for (int peer = 0; peer < services; ++peer) {
                 Msg msg = ZMQ.recv(rep, 0);

@@ -1915,7 +1915,7 @@ public class ZMQ
          */
         public boolean isImmediate()
         {
-            return (boolean) base.getSocketOptx(zmq.ZMQ.ZMQ_IMMEDIATE);
+            return (Boolean) base.getSocketOptx(zmq.ZMQ.ZMQ_IMMEDIATE);
         }
 
         /**
@@ -2187,7 +2187,7 @@ public class ZMQ
          */
         public boolean isAsServerCurve()
         {
-            return (boolean) base.getSocketOptx(zmq.ZMQ.ZMQ_CURVE_SERVER);
+            return (Boolean) base.getSocketOptx(zmq.ZMQ.ZMQ_CURVE_SERVER);
         }
 
         /**

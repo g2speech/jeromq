@@ -85,7 +85,7 @@ public class CustomEncoderTest
 
         Msg msg = new Msg("12345678901234567890".getBytes(ZMQ.CHARSET));
         cencoder.loadMsg(msg);
-        ValueReference<ByteBuffer> ref = new ValueReference<>();
+        ValueReference<ByteBuffer> ref = new ValueReference<ByteBuffer>();
         int outsize = cencoder.encode(ref, 0);
         assertThat(outsize, is(30));
         ByteBuffer out = ref.get();

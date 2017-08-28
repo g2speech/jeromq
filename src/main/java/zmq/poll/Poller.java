@@ -9,7 +9,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Objects;
+import zmq.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -84,7 +84,7 @@ public final class Poller extends PollerBase implements Runnable
         super(name);
         this.ctx = ctx;
 
-        fdTable = new HashSet<>();
+        fdTable = new HashSet<Handle>();
         selector = ctx.createSelector();
     }
 
@@ -211,7 +211,13 @@ public final class Poller extends PollerBase implements Runnable
                                 key = handle.fd.register(selector, handle.ops, handle);
                                 assert (key != null);
                             }
-                            catch (CancelledKeyException | ClosedSelectorException | ClosedChannelException e) {
+                            catch (CancelledKeyException e) {
+                                e.printStackTrace();
+                            }
+                            catch (ClosedSelectorException e) {
+                                e.printStackTrace();
+                            }
+                            catch (ClosedChannelException e) {
                                 e.printStackTrace();
                             }
                         }

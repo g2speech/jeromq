@@ -68,8 +68,8 @@ public class XPub extends SocketBase
 
         subscriptions = new Mtrie();
         dist = new Dist();
-        pendingData = new ArrayDeque<>();
-        pendingFlags = new ArrayDeque<>();
+        pendingData = new ArrayDeque<Blob>();
+        pendingFlags = new ArrayDeque<Integer>();
     }
 
     @Override

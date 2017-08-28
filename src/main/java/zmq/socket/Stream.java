@@ -47,7 +47,7 @@ public class Stream extends SocketBase
     }
 
     //  Outbound pipes indexed by the peer IDs.
-    private Map<Blob, Outpipe> outpipes = new HashMap<>();
+    private Map<Blob, Outpipe> outpipes = new HashMap<Blob, Outpipe>();
 
     //  The pipe we are currently writing to.
     private Pipe currentOut;

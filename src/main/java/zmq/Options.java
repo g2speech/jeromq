@@ -200,7 +200,7 @@ public class Options
     @SuppressWarnings("deprecation")
     public boolean setSocketOpt(int option, Object optval)
     {
-        final ValueReference<Boolean> result = new ValueReference<>(false);
+        final ValueReference<Boolean> result = new ValueReference<Boolean>(false);
         switch (option) {
         case ZMQ.ZMQ_SNDHWM:
             sendHwm = (Integer) optval;
@@ -459,7 +459,13 @@ public class Options
             assert (custom.getConstructor(int.class, long.class) != null);
             return custom;
         }
-        catch (NoSuchMethodException | SecurityException e) {
+        catch (NoSuchMethodException e) {
+            System.out.println(
+                               "Custom " + clazz
+                                       + " has no required constructor <init>(int bufferSize, long maxMsgSize)");
+            return null;
+        }
+        catch (SecurityException e) {
             System.out.println(
                                "Custom " + clazz
                                        + " has no required constructor <init>(int bufferSize, long maxMsgSize)");

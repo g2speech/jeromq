@@ -92,7 +92,7 @@ public class Ctx
     // A list of poll selectors opened under this context. When the context is
     // destroyed, each of the selectors is closed to ensure resource
     // deallocation.
-    private final List<Selector> selectors = new ArrayList<>();
+    private final List<Selector> selectors = new ArrayList<Selector>();
 
     //  The reaper thread.
     private Reaper reaper;
@@ -134,7 +134,7 @@ public class Ctx
     static final int         TERM_TID   = 0;
     private static final int REAPER_TID = 1;
 
-    private final Map<String, PendingConnection> pendingConnections = new HashMap<>();
+    private final Map<String, PendingConnection> pendingConnections = new HashMap<String, PendingConnection>();
 
     private boolean ipv6;
 
@@ -158,10 +158,10 @@ public class Ctx
 
         termMailbox = new Mailbox(this, "terminater", -1);
 
-        emptySlots = new ArrayDeque<>();
-        ioThreads = new ArrayList<>();
-        sockets = new ArrayList<>();
-        endpoints = new HashMap<>();
+        emptySlots = new ArrayDeque<Integer>();
+        ioThreads = new ArrayList<IOThread>();
+        sockets = new ArrayList<SocketBase>();
+        endpoints = new HashMap<String, Endpoint>();
     }
 
     private void destroy() throws IOException

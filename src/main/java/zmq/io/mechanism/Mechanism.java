@@ -326,7 +326,7 @@ public abstract class Mechanism
     {
         assert (session != null);
 
-        List<Msg> msgs = new ArrayList<>(7); //  ZAP reply consists of 7 frames
+        List<Msg> msgs = new ArrayList<Msg>(7); //  ZAP reply consists of 7 frames
 
         //  Initialize all reply frames
         for (int idx = 0; idx < 7; ++idx) {

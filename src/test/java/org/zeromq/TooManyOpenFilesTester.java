@@ -128,7 +128,6 @@ public class TooManyOpenFilesTester
         /**
          * Called between the request-reply cycle.
          * @param client the socket participating to the cycle of request-reply
-         * @param selector the selector used for polling
          */
         protected void inBetween(ZContext ctx, Socket client)
         {
@@ -139,7 +138,6 @@ public class TooManyOpenFilesTester
     /**
      * Polls while keeping the selector opened.
      * @param socket the socket to poll
-     * @param selector the selector used for polling
      */
     private void poll(ZContext ctx, Socket socket)
     {
@@ -155,8 +153,7 @@ public class TooManyOpenFilesTester
 
     /**
      * Test exhaustion of java pipes.
-     * Exhaustion can currently come from {@link zmq.Signaler} that are not closed
-     * or from {@link java.nio.Selector} that are not closed.
+     * Exhaustion can currently come from {@link zmq.Signaler} that are not closed.
      * @throws Exception if something bad occurs.
      */
     @Test
@@ -166,7 +163,7 @@ public class TooManyOpenFilesTester
         // crashed on iteration 3000-ish in my machine for poll selectors; on iteration 16-ish for sockets
         for (int index = 0; index < 10000; ++index) {
             long start = System.currentTimeMillis();
-            List<Pair> pairs = new ArrayList<>();
+            List<Pair> pairs = new ArrayList<Pair>();
 
             for (int idx = 0; idx < 20; ++idx) {
                 Pair pair = testWithPoll(idx);

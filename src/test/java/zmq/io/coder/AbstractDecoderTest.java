@@ -35,7 +35,7 @@ public abstract class AbstractDecoderTest
 
         assertThat(insize, is(7));
         in.flip();
-        ValueReference<Integer> process = new ValueReference<>(0);
+        ValueReference<Integer> process = new ValueReference<Integer>(0);
         decoder.decode(in, insize, process);
         assertThat(process.get(), is(7));
         Msg msg = decoder.msg();
@@ -52,7 +52,7 @@ public abstract class AbstractDecoderTest
 
         assertThat(insize, is(64));
         in.flip();
-        ValueReference<Integer> process = new ValueReference<>(0);
+        ValueReference<Integer> process = new ValueReference<Integer>(0);
         decoder.decode(in, insize, process);
         assertThat(process.get(), is(64));
 
@@ -84,7 +84,7 @@ public abstract class AbstractDecoderTest
 
         //        assertThat(insize, is(62));
         in.flip();
-        ValueReference<Integer> process = new ValueReference<>(0);
+        ValueReference<Integer> process = new ValueReference<Integer>(0);
         decoder.decode(in, insize, process);
         assertThat(process.get(), is(insize));
 
@@ -121,7 +121,7 @@ public abstract class AbstractDecoderTest
         readShortMessage(in);
 
         in.flip();
-        ValueReference<Integer> processed = new ValueReference<>(0);
+        ValueReference<Integer> processed = new ValueReference<Integer>(0);
         decoder.decode(in, 14, processed);
         assertThat(processed.get(), is(7));
         assertThat(in.position(), is(7));

@@ -13,7 +13,7 @@ public class YPipeConflate<T extends Msg> implements YPipeBase<T>
 {
     private boolean readerAwake;
 
-    private final DBuffer<T> dbuffer = new DBuffer<>();
+    private final DBuffer<T> dbuffer = new DBuffer<T>();
 
     //  Following function (write) deliberately copies uninitialised data
     //  when used with zmq_msg. Initialising the VSM body for

@@ -104,7 +104,7 @@ public class ReqSpecTest extends AbstractSpecTest
 
         int timeout = 250;
         int services = 3;
-        List<SocketBase> senders = new ArrayList<>();
+        List<SocketBase> senders = new ArrayList<SocketBase>();
         for (int peer = 0; peer < services; ++peer) {
             SocketBase connect = ZMQ.socket(ctx, connectType);
             assertThat(connect, notNullValue());
@@ -193,7 +193,7 @@ public class ReqSpecTest extends AbstractSpecTest
 
         int timeout = 250;
         int services = 5;
-        List<SocketBase> senders = new ArrayList<>();
+        List<SocketBase> senders = new ArrayList<SocketBase>();
         for (int peer = 0; peer < services; ++peer) {
             SocketBase reps = ZMQ.socket(ctx, connectType);
             assertThat(reps, notNullValue());

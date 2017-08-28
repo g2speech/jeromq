@@ -317,7 +317,7 @@ public class ZPoller implements Closeable
     {
         this.creator = creator;
         this.selector = selector;
-        items = new HashMap<>();
+        items = new HashMap<Object, Set<ItemHolder>>();
         all = createContainer(0);
     }
 
@@ -803,7 +803,7 @@ public class ZPoller implements Closeable
     // create the container of holders
     protected Set<ItemHolder> createContainer(int size)
     {
-        return new HashSet<>(size);
+        return new HashSet<ItemHolder>(size);
     }
 
     // gets all the items of this poller

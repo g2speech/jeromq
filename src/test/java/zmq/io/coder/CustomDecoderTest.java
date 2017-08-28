@@ -77,7 +77,7 @@ public class CustomDecoderTest
         readBody(in);
 
         in.flip();
-        ValueReference<Integer> processed = new ValueReference<>(0);
+        ValueReference<Integer> processed = new ValueReference<Integer>(0);
         Step.Result result = cdecoder.decode(in, 30, processed);
         assertThat(processed.get(), is(30));
         assertThat(cdecoder.size, is(20));

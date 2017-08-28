@@ -85,7 +85,7 @@ public class SessionBase extends Own implements Pipe.IPipeEvents, IPollEvents
         hasLingerTimer = false;
         this.addr = addr;
 
-        terminatingPipes = new HashSet<>();
+        terminatingPipes = new HashSet<Pipe>();
     }
 
     @Override

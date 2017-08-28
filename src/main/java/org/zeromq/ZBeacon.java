@@ -132,7 +132,12 @@ public class ZBeacon
                         broadcastChannel.send(ByteBuffer.wrap(beacon), broadcastInetSocketAddress);
                         Thread.sleep(broadcastInterval);
                     }
-                    catch (InterruptedException | ClosedByInterruptException interruptedException) {
+                    catch (InterruptedException interruptedException) {
+                        // Re-interrupt the thread so the caller can handle it.
+                        Thread.currentThread().interrupt();
+                        break;
+                    }
+                    catch (ClosedByInterruptException interruptedException) {
                         // Re-interrupt the thread so the caller can handle it.
                         Thread.currentThread().interrupt();
                         break;

@@ -112,9 +112,9 @@ public abstract class SocketBase extends Own implements IPollEvents, Pipe.IPipeE
         options.ipv6 = parent.get(ZMQ.ZMQ_IPV6) != 0;
         options.linger = parent.get(ZMQ.ZMQ_BLOCKY) != 0 ? -1 : 0;
 
-        endpoints = new MultiMap<>();
-        inprocs = new MultiMap<>();
-        pipes = new HashSet<>();
+        endpoints = new MultiMap<String, EndpointPipe>();
+        inprocs = new MultiMap<String, Pipe>();
+        pipes = new HashSet<Pipe>();
 
         mailbox = new Mailbox(parent, "socket-" + sid, tid);
     }

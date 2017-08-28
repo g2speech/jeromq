@@ -85,7 +85,7 @@ public class TestZPoller
         try {
             receiver.connect("tcp://127.0.0.1:" + port);
 
-            final AtomicReference<ZMsg> msg = new AtomicReference<>();
+            final AtomicReference<ZMsg> msg = new AtomicReference<ZMsg>();
             poller.register(receiver, new EventsHandlerAdapter()
             {
                 @Override

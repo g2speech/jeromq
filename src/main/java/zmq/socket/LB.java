@@ -35,7 +35,7 @@ public class LB
         more = false;
         dropping = false;
 
-        pipes = new ArrayList<>();
+        pipes = new ArrayList<Pipe>();
     }
 
     public void attach(Pipe pipe)

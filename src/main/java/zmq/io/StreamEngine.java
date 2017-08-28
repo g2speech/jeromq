@@ -293,7 +293,7 @@ public class StreamEngine implements IEngine, IPollEvents
         nextMsg = identity;
         processMsg = identity;
 
-        outpos = new ValueReference<>();
+        outpos = new ValueReference<ByteBuffer>();
 
         greetingRecv = ByteBuffer.allocate(V3_GREETING_SIZE);
         greetingSend = ByteBuffer.allocate(V3_GREETING_SIZE);
@@ -494,7 +494,7 @@ public class StreamEngine implements IEngine, IPollEvents
         }
 
         boolean rc = false;
-        ValueReference<Integer> processed = new ValueReference<>(0);
+        ValueReference<Integer> processed = new ValueReference<Integer>(0);
 
         while (insize > 0) {
             //  Push the data to the decoder.
@@ -644,7 +644,7 @@ public class StreamEngine implements IEngine, IPollEvents
         }
 
         while (insize > 0) {
-            ValueReference<Integer> processed = new ValueReference<>(0);
+            ValueReference<Integer> processed = new ValueReference<Integer>(0);
             Step.Result result = decoder.decode(inpos, insize, processed);
             assert (processed.get() <= insize);
             insize -= processed.get();
@@ -812,7 +812,7 @@ public class StreamEngine implements IEngine, IPollEvents
             txMsg.put(options.identity, 0, options.identitySize);
             encoder.loadMsg(txMsg);
 
-            ValueReference<ByteBuffer> bufferp = new ValueReference<>(tmp);
+            ValueReference<ByteBuffer> bufferp = new ValueReference<ByteBuffer>(tmp);
             int bufferSize = encoder.encode(bufferp, headerSize);
             assert (bufferSize == headerSize);
 

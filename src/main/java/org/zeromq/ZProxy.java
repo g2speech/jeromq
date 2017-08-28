@@ -848,7 +848,14 @@ public class ZProxy
                     success |= provider.configure(capture, Plug.CAPTURE, args);
                     state.started = true;
                 }
-                catch (RuntimeException | IOException e) {
+                catch (RuntimeException e) {
+                    e.printStackTrace();
+                    // unable to configure proxy, exit
+                    state.restart = false;
+                    state.started = false;
+                    return false;
+                }
+                catch (IOException e) {
                     e.printStackTrace();
                     // unable to configure proxy, exit
                     state.restart = false;
@@ -955,7 +962,12 @@ public class ZProxy
                         dup.destroy();
                         cfg.destroy();
                     }
-                    catch (RuntimeException | IOException e) {
+                    catch (RuntimeException e) {
+                        e.printStackTrace();
+                        state.restart = false;
+                        return false;
+                    }
+                    catch (IOException e) {
                         e.printStackTrace();
                         state.restart = false;
                         return false;
